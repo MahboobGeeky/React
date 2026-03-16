@@ -1,6 +1,7 @@
 import React from "react";
 
 function InputBox({
+    // Props (variables)
     label,
     amount,
     onAmountChange,
