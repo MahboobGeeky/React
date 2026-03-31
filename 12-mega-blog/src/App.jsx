@@ -1,10 +1,10 @@
-import {useState, useEffect, use } from 'react'
+import {useState, useEffect } from 'react'
 import {useDispatch} from "react-redux"
 import authService from '../appwrite/auth'
 
-
 import './App.css'
-import { logout } from './store/authSlice'
+import {login, logout} from './store/authSlice'
+import {Header, Footer} from './components/index'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -21,13 +21,19 @@ function App() {
       }
     })
     .finally(() => setLoading(false))
-  }, [])
+  }, [dispatch])
 
-  return (
-    <>
-      <h1>react app mega blog</h1>
-    </>
-  )
+  return !loading ? (
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        this is test
+      </main>
+      <Footer />
+      
+    </div>
+  ) : null;
+
 }
 
 
