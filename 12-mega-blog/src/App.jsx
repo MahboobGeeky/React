@@ -1,41 +1,29 @@
-import {useState, useEffect } from 'react'
-import {useDispatch} from "react-redux"
-import authService from '../appwrite/auth'
-
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
 import './App.css'
-import {login, logout} from './store/authSlice'
-import {Header, Footer} from './components/index'
 
 function App() {
-  const [loading, setLoading] = useState(true)
-  const dispatch = useDispatch();
+  const [count, setCount] = useState(0)
 
+  return (
+    <>
+      <div class="flex flex-col gap-2 p-8 sm:flex-row sm:items-center sm:gap-6 sm:py-4 ...">
+  <img class="mx-auto block h-24 rounded-full sm:mx-0 sm:shrink-0" src="/img/erin-lindford.jpg" alt="" />
+          <div class="space-y-2 text-center sm:text-left">
+            <div class="space-y-0.5">
+              <p class="text-lg font-semibold text-black">Erin Lindford</p>
+              <p class="font-medium text-gray-500">Product Engineer</p>
+            </div>
+            <button 
+              class="border-purple-200 text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white active:bg-purple-700 ...">
+              Message
+            </button>
+          </div>  
+        </div>
+            </>
+          )
+        }
 
-  useEffect(() => {
-    authService.getCurrentUser()
-    .then((userData) => {
-      if(userData){
-        dispatch(login({userData}))
-      }else{
-        dispatch(logout())
-      }
-    })
-    .finally(() => setLoading(false))
-  }, [dispatch])
-
-  return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
-        <Header />
-        <main>
-        TODO:  <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </div>
-  ) : null
-
-}
-
-
-export default App
+    export default App
