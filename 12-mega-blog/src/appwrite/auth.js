@@ -9,7 +9,7 @@ export class AuthService {
         this.client
             .setEndpoint((conf.appwriteUrl))
             .setProject((conf.appwriteDatabaseId));
-        
+        this.account = new Account(this.client);
     }
 
     // create account SignUp
@@ -40,11 +40,13 @@ export class AuthService {
 
     async getCurrentUser() {
         try {
-            return await this.account.get();
+            const user = await this.account.get();
+            console.log(user);
+            return user;
         } catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);
+            return null;
         }
-
         return null;
     }
 
@@ -61,5 +63,5 @@ export class AuthService {
 
 const authService = new AuthService();
 
-export default AuthService
+export default authService;
 
